@@ -10,8 +10,8 @@ module.exports = defineConfig({
 
   reporter: 'html',
 
-  use: {
-    headless: true,
+ use: {
+  headless: process.env.CI ? true : false,
     trace: 'on-first-retry',
   },
 
