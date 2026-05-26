@@ -1,8 +1,6 @@
-Playwright E2E Automation Project
 This project is built using Playwright to perform End-to-End (E2E) testing of a SkillEra web application.
 
-Project Purpose
-The main purpose of this project is to automate and test the complete workflow of a Trainer user journey, ensuring that all critical features work correctly from start to finish.
+The purpose of this project is to automate and test the complete workflow of a Trainer user journey, ensuring that all critical features work correctly from start to finish.
 
 The automated flow includes:
 - Trainer logs into the application
