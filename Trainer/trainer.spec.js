@@ -16,45 +16,95 @@ test('Trainer creates session and logs out', async ({ page }) => {
 
   // START DATE
   await page.getByRole('button', { name: 'Pick a date' }).first().click();
-  await page.locator('button[data-day="5/7/2026"]:visible').click();
 
-  // END DATE (FIXED)
+  const startDatePicker = page.locator('[role="dialog"]').last();
+
+  await startDatePicker
+    .locator('button[data-day="5/7/2026"]')
+    .click();
+
+  // END DATE
   await page.getByRole('button', { name: 'Pick a date' }).last().click();
 
-  const endDate = page.locator('button[data-day="5/20/2026"]');
-  await endDate.first().click();   
+  const endDatePicker = page.locator('[role="dialog"]').last();
 
-  // Time
+  await endDatePicker
+    .locator('button[data-day="5/20/2026"]')
+    .click();
+
+  // START TIME
   await page.getByText('Select time').first().click();
-  await page.getByRole('button', { name: '03' }).click();
 
+  const startTimeDropdown = page.locator('[role="dialog"]').last();
+
+  await startTimeDropdown
+    .getByRole('button', { name: '03' })
+    .click();
+
+  // END TIME
   await page.getByText('Select time').last().click();
-  await page.getByRole('button', { name: '04' }).click();
+
+  const endTimeDropdown = page.locator('[role="dialog"]').last();
+
+  await endTimeDropdown
+    .getByRole('button', { name: '04' })
+    .click();
 
   // Form fields
   await page.getByRole('textbox', { name: 'Topic *' }).fill('QA');
-  await page.getByRole('textbox', { name: 'Description' }).fill('API Testing');
+
+  await page.getByRole('textbox', { name: 'Description' })
+    .fill('API Testing');
 
   // Batch
-  await page.getByRole('combobox').filter({ hasText: 'Select batch' }).click();
-  await page.getByRole('button', { name: 'Winter Batch' }).click();
+  await page.getByRole('combobox')
+    .filter({ hasText: 'Select batch' })
+    .click();
+
+  await page.getByRole('button', { name: 'Winter Batch' })
+    .click();
 
   // Module
-  await page.getByRole('combobox').filter({ hasText: 'Select module' }).click();
-  await page.getByRole('button', { name: 'Communication Skills for QA' }).click();
+  await page.getByRole('combobox')
+    .filter({ hasText: 'Select module' })
+    .click();
+
+  await page.getByRole('button', {
+    name: 'Communication Skills for QA'
+  }).click();
 
   // Trainer
-  await page.getByRole('combobox').filter({ hasText: 'Rohit Vermaa' }).click();
-  await page.getByRole('button', { name: 'Rohit Vermaa' }).click();
+  await page.getByRole('combobox')
+    .filter({ hasText: 'Rohit Vermaa' })
+    .click();
+
+  await page.getByRole('button', {
+    name: 'Rohit Vermaa'
+  }).click();
 
   // Status
-  await page.getByRole('combobox').filter({ hasText: 'Scheduled' }).click();
-  await page.getByRole('button', { name: 'Scheduled' }).click();
+  await page.getByRole('combobox')
+    .filter({ hasText: 'Scheduled' })
+    .click();
 
-  // Create session
-  await page.getByRole('button', { name: 'Create Session' }).click();
+  await page.getByRole('button', {
+    name: 'Scheduled'
+  }).click();
+
+  // Create Session
+  await page.getByRole('button', {
+    name: 'Create Session'
+  }).click();
+
+  // Optional success assertion
+  // await expect(page.getByText(/success/i)).toBeVisible();
 
   // Logout
-  await page.getByRole('button', { name: 'RV Rohit Vermaa rohit@gmail.' }).click();
-  await page.getByRole('menuitem', { name: 'Log out' }).click();
+  await page.getByRole('button', {
+    name: /Rohit Vermaa/i
+  }).click();
+
+  await page.getByRole('menuitem', {
+    name: 'Log out'
+  }).click();
 });
