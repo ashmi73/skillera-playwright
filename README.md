@@ -34,8 +34,8 @@ To run the test
   npx playwright test
 - To run in headed mode (local only)
   npx playwright test --headed
--To run specific test
-npx playwright test Trainer/trainer.spec.js
+- To run specific test
+  npx playwright test Trainer/trainer.spec.js
 
 To view report:
 - npx playwright show-report
